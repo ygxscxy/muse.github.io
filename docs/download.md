@@ -80,7 +80,10 @@ title: 下载 Muse
     <p class="download-card-title">Windows</p>
     <p class="download-card-desc">Windows 10 及以上 · 64位</p>
   </div>
-  <span class="download-card-action">下载 .exe →</span>
+  <span class="download-card-action">
+  <a class="download-card" href="https://github.com/ygxscxy/muse.github.io/releases/download/v1.0.0/Muse-Setup.exe">下载 .exe</a>
+  </span>
+  
 </a>
 
 <a class="download-card" href="#">
