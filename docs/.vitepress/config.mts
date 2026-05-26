@@ -8,7 +8,7 @@ export default defineConfig({
 
   lang: "zh-CN",
 
-  base: "/",
+  base: "/muse.github.io/",
 
   lastUpdated: false,
 
