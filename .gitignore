@@ -5,3 +5,4 @@ node_modules
 docs/public/downloads/
 *.exe
 *.local
+**/dist
