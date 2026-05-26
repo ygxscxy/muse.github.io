@@ -74,16 +74,13 @@ title: 下载 Muse
 
 选择你的操作系统，开始使用 Muse。
 
-<a class="download-card" href="./downloads/Muse-Setup.exe" download>
+<a class="download-card" href="https://github.com/ygxscxy/muse.github.io/releases/download/v1.0.0/Muse-Setup.exe" download>
   <div class="download-card-icon">🪟</div>
   <div class="download-card-info">
     <p class="download-card-title">Windows</p>
     <p class="download-card-desc">Windows 10 及以上 · 64位</p>
   </div>
-  <span class="download-card-action">
-  <a class="download-card" href="https://github.com/ygxscxy/muse.github.io/releases/download/v1.0.0/Muse-Setup.exe">下载 .exe</a>
-  </span>
-  
+  <span class="download-card-action">下载 .exe →</span>
 </a>
 
 <a class="download-card" href="#">
