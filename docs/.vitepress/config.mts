@@ -8,6 +8,8 @@ export default defineConfig({
 
   lang: "zh-CN",
 
+  base: "/",
+
   lastUpdated: false,
 
   appearance: true,
