@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* ─── 浅色模式（默认）─── */
+:root {
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #1d4ed8;
+  --vp-c-brand-3: #1e40af;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.14);
+
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alpha-with-backdrop: rgba(255, 255, 255, 0.7);
+  --vp-c-bg-soft: #f8f9fa;
+  --vp-c-bg-soft-up: #f1f3f5;
+  --vp-c-bg-mute: #e9ecef;
+  --vp-c-bg-elv: #f1f3f5;
+
+  --vp-c-divider: #e9ecef;
+  --vp-c-divider-light: #dee2e6;
+
+  --vp-c-text-1: #1a1a2e;
+  --vp-c-text-2: #495057;
+  --vp-c-text-3: #868e96;
+
+  --vp-c-gray: #e9ecef;
+  --vp-c-gray-soft: rgba(233, 236, 239, 0.5);
+
+  --vp-font-family-base:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --vp-font-family-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Landing page custom variables */
+  --muse-hero-bg-start: #f8f9fa;
+  --muse-hero-bg-end: #e9ecef;
+  --muse-hero-text: #1a1a2e;
+  --muse-hero-subtitle: #495057;
+  --muse-hero-orb: rgba(37, 99, 235, 0.06);
+  --muse-section-text: #1a1a2e;
+  --muse-section-desc: #495057;
+  --muse-mock-bg: #ffffff;
+  --muse-mock-border: #e9ecef;
+  --muse-mock-titlebar: #f1f3f5;
+  --muse-mock-toolbar: #f8f9fa;
+  --muse-mock-text: #495057;
+  --muse-mock-heading: #1a1a2e;
+  --muse-mock-hash: #2563eb;
+  --muse-mock-bold: #1a1a2e;
+  --muse-mock-code-bg: rgba(37, 99, 235, 0.08);
+  --muse-mock-code-text: #2563eb;
+  --muse-mock-math: #7c3aed;
+  --muse-cta-bg-start: #f8f9fa;
+  --muse-cta-bg-end: #e9ecef;
+  --muse-cta-orb: rgba(37, 99, 235, 0.06);
+  --muse-btn-bg: #ffffff;
+  --muse-btn-border: #e9ecef;
+  --muse-btn-hover-bg: #f1f3f5;
+  --muse-footer-border: #e9ecef;
+  --muse-footer-text: #868e96;
+}
+
+/* ─── 深色模式 ─── */
+html.dark {
+  --vp-c-brand-1: #3b82f6;
+  --vp-c-brand-2: #2563eb;
+  --vp-c-brand-3: #1d4ed8;
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.14);
+
+  --vp-c-bg: #0a0a0f;
+  --vp-c-bg-alpha-with-backdrop: rgba(10, 10, 15, 0.7);
+  --vp-c-bg-soft: #12121a;
+  --vp-c-bg-soft-up: #1a1a26;
+  --vp-c-bg-mute: #16161f;
+  --vp-c-bg-elv: #1a1a26;
+
+  --vp-c-divider: #1e1e2e;
+  --vp-c-divider-light: #252538;
+
+  --vp-c-text-1: #e4e4ed;
+  --vp-c-text-2: #9494a6;
+  --vp-c-text-3: #5c5c72;
+
+  --vp-c-gray: #1e1e2e;
+  --vp-c-gray-soft: rgba(30, 30, 46, 0.5);
+
+  /* Landing page custom variables */
+  --muse-hero-bg-start: #0a0a0f;
+  --muse-hero-bg-end: #1a1a2e;
+  --muse-hero-text: #e4e4ed;
+  --muse-hero-subtitle: #9494a6;
+  --muse-hero-orb: rgba(59, 130, 246, 0.08);
+  --muse-section-text: #e4e4ed;
+  --muse-section-desc: #9494a6;
+  --muse-mock-bg: #12121a;
+  --muse-mock-border: #1e1e2e;
+  --muse-mock-titlebar: #16161f;
+  --muse-mock-toolbar: #14141e;
+  --muse-mock-text: #5c5c72;
+  --muse-mock-heading: #e4e4ed;
+  --muse-mock-hash: #3b82f6;
+  --muse-mock-bold: #e4e4ed;
+  --muse-mock-code-bg: rgba(59, 130, 246, 0.1);
+  --muse-mock-code-text: #3b82f6;
+  --muse-mock-math: #a78bfa;
+  --muse-cta-bg-start: #0f172a;
+  --muse-cta-bg-end: #1a1f33;
+  --muse-cta-orb: rgba(59, 130, 246, 0.06);
+  --muse-btn-bg: #12121a;
+  --muse-btn-border: #1e1e2e;
+  --muse-btn-hover-bg: #16161f;
+  --muse-footer-border: #1e1e2e;
+  --muse-footer-text: #5c5c72;
+}
+
+html {
+  font-family: var(--vp-font-family-base);
+}
+
+body {
+  background-color: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-text-3);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-text-2);
+}
+
+::selection {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-text-1);
+}
+
+a {
+  transition: color 0.2s ease;
+}
+
+button {
+  font-family: var(--vp-font-family-base);
+}
+
+.vp-doc a {
+  color: var(--vp-c-brand-1);
+}
+
+.vp-doc a:hover {
+  color: var(--vp-c-brand-2);
+}
+
+.VPHero .name clip-path {
+  max-width: 100%;
+}
+
+.VPFeatures {
+  display: none;
+}
+
+.VPHomeHero .container {
+  max-width: 100%;
+  padding: 0;
+}
+
+.VPHomeHero .main {
+  max-width: 100%;
+}
+
+/* Theme toggle icon adjustments */
+.VPSwitchAppearance .check {
+  background-color: var(--vp-c-bg-soft);
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Vignette overlay */
+.landing-vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(10, 10, 15, 0.6) 100%
+  );
+  pointer-events: none;
+}
