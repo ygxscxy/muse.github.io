@@ -5,7 +5,6 @@ export default defineConfig({
   description:
     "A modern WYSIWYG Markdown editor built with Electron, featuring real-time preview, code highlighting, math formulas, and Mermaid diagrams.",
   lang: "zh-CN",
-  base: "/",
   lastUpdated: false,
   cleanUrls: true,
 
