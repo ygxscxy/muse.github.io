@@ -20,14 +20,6 @@ export default defineConfig({
     [
       "meta",
       {
-        property: "og:title",
-        content: "Muse — A Modern Markdown Editor",
-      },
-    ],
-
-    [
-      "meta",
-      {
         property: "og:description",
         content:
           "A modern WYSIWYG Markdown editor with real-time preview, code highlighting, math formulas, and Mermaid diagrams.",

@@ -171,15 +171,6 @@ button {
   display: none;
 }
 
-.VPHomeHero .container {
-  max-width: 100%;
-  padding: 0;
-}
-
-.VPHomeHero .main {
-  max-width: 100%;
-}
-
 /* Theme toggle icon adjustments */
 .VPSwitchAppearance .check {
   background-color: var(--vp-c-bg-soft);
@@ -264,7 +255,8 @@ button {
 
 /* ─── Glow Pulse ─── */
 @keyframes glowPulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
   }
   50% {

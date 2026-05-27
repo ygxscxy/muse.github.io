@@ -42,22 +42,22 @@ const highlights = [
   { icon: "⚡", title: "极速启动", desc: "基于 Electron，秒开即用" },
 ]
 
-// Whats New - v1.1.0 版本亮点
+// What's New — 文件预览与代码高亮
 const whatsNew = [
   {
-    icon: "🧩",
-    title: "插件化扩展系统",
-    desc: "支持第三方扩展插件，自定义编辑器功能与主题",
+    icon: "📊",
+    title: "Office 文档预览",
+    desc: "支持 Excel、Word、PPT、XMind 等办公文档在应用内直接预览，无需切换软件",
   },
   {
-    icon: "☁️",
-    title: "云端同步预览",
-    desc: "多设备间实时同步工作区状态与编辑进度",
+    icon: "🎨",
+    title: "代码自动语法高亮",
+    desc: "自动识别 JS/TS/Python/JSON/HTML/CSS/Shell/SQL 等语言，一键高亮",
   },
   {
-    icon: "⚡",
-    title: "性能大幅提升",
-    desc: "启动速度提升 40%，大文件编辑流畅度显著优化",
+    icon: "📁",
+    title: "多格式文件拖拽打开",
+    desc: "拖拽即可打开 xlsx、docx、pptx、xmind 等非 Markdown 文件，预览编辑自动切换",
   },
 ]
 
@@ -135,15 +135,12 @@ onUnmounted(() => {
           <span class="hero-icon">✦</span>
           <span class="hero-name">Muse</span>
         </div>
-        <h1 class="hero-title">A Modern Markdown Editor</h1>
+        <h1 class="hero-title">现代 Markdown 编辑器</h1>
         <p class="hero-subtitle">
-          Write, preview, and publish — all in one place.
+          不止 Markdown —— Office 预览、代码高亮、XMind 导图，一揽子搞定
         </p>
         <div class="hero-actions">
           <a href="/download" class="hero-cta">下载 Muse</a>
-        </div>
-        <div class="hero-screenshot" ref="heroScreenshotRef">
-          <img src="/screenshots/editor-full.png" alt="Muse Editor Interface" />
         </div>
         <p class="hero-version">v1.1.0 · 免费 · 跨平台</p>
       </div>
@@ -189,9 +186,9 @@ onUnmounted(() => {
     <!-- What's New Section -->
     <section class="whats-new-section" :class="{ visible: whatsNewVisible }">
       <div class="section-header">
-        <span class="section-badge">v1.1.0</span>
-        <h2 class="section-title">本次更新亮点</h2>
-        <p class="section-desc">持续进化，让每一次编辑都更顺滑</p>
+        <span class="section-badge">NEW</span>
+        <h2 class="section-title">文件预览 & 代码高亮</h2>
+        <p class="section-desc">不止 Markdown，更多格式一揽子搞定</p>
       </div>
       <div class="whats-new-grid">
         <div
@@ -326,12 +323,6 @@ onUnmounted(() => {
         <p class="cta-version">v1.1.0</p>
       </div>
     </section>
-
-    <!-- Footer attribution -->
-    <footer class="landing-footer">
-      <p>Built with Electron, React, and TipTap</p>
-      <p>Copyright &copy; 2026 Muse Editor</p>
-    </footer>
   </div>
 </template>
 
@@ -1069,19 +1060,6 @@ html.dark .demo-mock {
   margin-top: 2rem;
   font-size: 0.85rem;
   color: var(--vp-c-text-3);
-}
-
-/* ─── Footer ─── */
-.landing-footer {
-  text-align: center;
-  padding: 2rem;
-  border-top: 1px solid var(--muse-footer-border);
-}
-
-.landing-footer p {
-  margin: 0.25rem 0;
-  font-size: 0.82rem;
-  color: var(--muse-footer-text);
 }
 
 /* ─── Responsive ─── */
