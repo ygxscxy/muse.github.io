@@ -1,0 +1,24 @@
+# Checklist
+
+- [ ] 代码块支持的语言列表包含至少 15 种编程语言
+- [ ] 使用 lowlight 官方语言包（`highlight.js` 内置语言）而非自定义语法高亮
+- [ ] 代码块组件中语言选择下拉框包含所有已注册语言
+- [ ] `fileType.ts` 工具函数正确识别 .xlsx/.xls/.docx/.pptx/.xmind/.md/.txt/.js/.ts/.py 等文件类型
+- [ ] IPC `file:preview` 通道正常工作，能读取文件并返回 ArrayBuffer
+- [ ] ExcelPreview 组件能正确解析并渲染 .xlsx 文件
+- [ ] ExcelPreview 支持多 sheet 切换
+- [ ] WordPreview 组件能正确将 .docx 转换为 HTML 并渲染
+- [ ] PptPreview 组件能逐页渲染 .pptx 幻灯片内容
+- [ ] PptPreview 组件支持翻页导航（上一页/下一页）
+- [ ] XmindPreview 组件能解析 .xmind 文件并渲染思维导图树形结构
+- [ ] FilePreview 主组件根据文件类型正确加载对应子组件
+- [ ] 预览面板显示加载状态和错误提示
+- [ ] App.tsx 中预览与编辑器互斥切换正常工作
+- [ ] 拖拽 Excel/Word/PPT/XMind 文件时触发预览模式
+- [ ] 拖拽 md/txt/js 等文本文件时触发编辑模式
+- [ ] 侧边栏文件树对不同文件类型显示不同图标
+- [ ] 点击侧边栏非 md 文件时触发预览而非编辑
+- [ ] 所有新增依赖（xlsx, mammoth, jszip）已正确安装
+- [ ] `npm start` 应用正常启动无报错
+- [ ] TypeScript 类型检查通过（`npm run typecheck`）
+- [ ] ESLint 检查通过（`npm run lint`）

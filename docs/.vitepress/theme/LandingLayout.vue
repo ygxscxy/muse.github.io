@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue"
+import { ref, onMounted, onUnmounted } from "vue"
 
 const heroVisible = ref(false)
 const featuresVisible = ref(false)
+const highlightsVisible = ref(false)
 const demoVisible = ref(false)
 const ctaVisible = ref(false)
 
+const whatsNewVisible = ref(false)
+const statsVisible = ref(false)
+const techStackVisible = ref(false)
+const heroScreenshotRef = ref<HTMLElement | null>(null)
+
 const features = [
   {
-    icon: "�",
+    icon: "📝",
     title: "WYSIWYG 实时渲染",
     description:
       "所见即所得的编辑体验，输入即呈现。支持标题、列表、表格、任务清单、引用等丰富格式，让 Markdown 编辑如写文档般自然流畅。",
@@ -20,7 +26,7 @@ const features = [
       "内置 190+ 种语言的语法高亮，支持 KaTeX 数学公式和 Mermaid 图表渲染。技术写作、学术笔记、流程图绘制，一站搞定。",
   },
   {
-    icon: "�",
+    icon: "📁",
     title: "文件管理器",
     description:
       "内置侧边栏文件树，支持文件夹展开/折叠、新建、重命名、删除。以纯 Markdown 文件形式存储，你的数据永远属于你。",
@@ -36,7 +42,37 @@ const highlights = [
   { icon: "⚡", title: "极速启动", desc: "基于 Electron，秒开即用" },
 ]
 
-const highlightsVisible = ref(false)
+// Whats New - v1.1.0 版本亮点
+const whatsNew = [
+  {
+    icon: "🧩",
+    title: "插件化扩展系统",
+    desc: "支持第三方扩展插件，自定义编辑器功能与主题",
+  },
+  {
+    icon: "☁️",
+    title: "云端同步预览",
+    desc: "多设备间实时同步工作区状态与编辑进度",
+  },
+  {
+    icon: "⚡",
+    title: "性能大幅提升",
+    desc: "启动速度提升 40%，大文件编辑流畅度显著优化",
+  },
+]
+
+// Stats Strip 数据
+const stats = [
+  { value: 10000, suffix: "+", label: "下载次数" },
+  { value: 500, suffix: "+", label: "GitHub Stars" },
+  { value: 3, suffix: "", label: "平台支持" },
+  { value: 190, suffix: "+", label: "高亮语言" },
+]
+
+// Tech Stack
+const techStack = ["Electron", "React", "TipTap", "TailwindCSS", "VitePress"]
+
+let scrollRafId: number | null = null
 
 onMounted(() => {
   heroVisible.value = true
@@ -52,6 +88,40 @@ onMounted(() => {
   setTimeout(() => {
     ctaVisible.value = true
   }, 900)
+  setTimeout(() => (whatsNewVisible.value = true), 1100)
+  setTimeout(() => (statsVisible.value = true), 1300)
+  setTimeout(() => (techStackVisible.value = true), 1500)
+
+  const handleScroll = () => {
+    if (scrollRafId !== null) return
+    scrollRafId = requestAnimationFrame(() => {
+      if (heroScreenshotRef.value) {
+        const scrolled = window.scrollY
+        const rate = scrolled * 0.15
+        heroScreenshotRef.value.style.transform = `translateY(${rate}px)`
+      }
+
+      if (statsVisible.value) {
+        document.querySelectorAll(".stat-number").forEach((el) => {
+          const target = parseInt(el.getAttribute("data-target") || "0")
+          const current = parseInt(
+            el.textContent?.replace(/[^0-9]/g, "") || "0",
+          )
+          if (current < target) {
+            const increment = Math.ceil(target / 60)
+            el.textContent = `${Math.min(current + increment, target)}${el.textContent?.match(/[^\d]+$/)?.[0] || ""}`
+          }
+        })
+      }
+      scrollRafId = null
+    })
+  }
+
+  window.addEventListener("scroll", handleScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  if (scrollRafId !== null) cancelAnimationFrame(scrollRafId)
 })
 </script>
 
@@ -72,7 +142,10 @@ onMounted(() => {
         <div class="hero-actions">
           <a href="/download" class="hero-cta">下载 Muse</a>
         </div>
-        <p class="hero-version">v1.0.0 · 免费 · 跨平台</p>
+        <div class="hero-screenshot" ref="heroScreenshotRef">
+          <img src="/screenshots/editor-full.png" alt="Muse Editor Interface" />
+        </div>
+        <p class="hero-version">v1.1.0 · 免费 · 跨平台</p>
       </div>
       <div class="hero-gradient-orb" />
     </section>
@@ -109,6 +182,41 @@ onMounted(() => {
             <h4 class="highlight-title">{{ item.title }}</h4>
             <p class="highlight-desc">{{ item.desc }}</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's New Section -->
+    <section class="whats-new-section" :class="{ visible: whatsNewVisible }">
+      <div class="section-header">
+        <span class="section-badge">v1.1.0</span>
+        <h2 class="section-title">本次更新亮点</h2>
+        <p class="section-desc">持续进化，让每一次编辑都更顺滑</p>
+      </div>
+      <div class="whats-new-grid">
+        <div
+          v-for="(item, index) in whatsNew"
+          :key="index"
+          class="whats-new-card"
+          :style="{ transitionDelay: `${index * 120}ms` }"
+        >
+          <div class="whats-new-icon">{{ item.icon }}</div>
+          <div class="whats-new-body">
+            <h3 class="whats-new-title">{{ item.title }}</h3>
+            <p class="whats-new-desc">{{ item.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Strip Section -->
+    <section class="stats-strip-section" :class="{ visible: statsVisible }">
+      <div class="stats-strip-inner">
+        <div v-for="(stat, index) in stats" :key="index" class="stat-item">
+          <span class="stat-number" :data-target="stat.value"
+            >{{ stat.value }}{{ stat.suffix }}</span
+          >
+          <span class="stat-label">{{ stat.label }}</span>
         </div>
       </div>
     </section>
@@ -174,6 +282,19 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- Tech Stack Section -->
+    <section class="tech-stack-section" :class="{ visible: techStackVisible }">
+      <p class="tech-stack-label">Built with</p>
+      <div class="tech-stack-list">
+        <span
+          v-for="(tech, index) in techStack"
+          :key="index"
+          class="tech-stack-item"
+          >{{ tech }}</span
+        >
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta-section" :class="{ visible: ctaVisible }">
       <div class="cta-content">
@@ -202,7 +323,7 @@ onMounted(() => {
             </span>
           </a>
         </div>
-        <p class="cta-version">v1.0.0</p>
+        <p class="cta-version">v1.1.0</p>
       </div>
     </section>
 
@@ -352,6 +473,30 @@ html.dark .hero-vignette {
   color: #fff;
 }
 
+/* ─── Hero Screenshot ─── */
+.hero-screenshot {
+  margin-top: 3rem;
+  position: relative;
+  will-change: transform;
+}
+.hero-screenshot img {
+  width: 100%;
+  max-width: 960px;
+  border-radius: 12px;
+  border: 1px solid var(--muse-mock-border, var(--vp-c-divider));
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+html.dark .hero-screenshot img {
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+}
+.hero-screenshot:hover img {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+}
+
 .hero-version {
   font-size: 0.85rem;
   color: var(--vp-c-text-3);
@@ -485,6 +630,133 @@ html.dark .hero-vignette {
   color: var(--vp-c-text-2);
   margin: 0;
   line-height: 1.5;
+}
+
+/* ─── What's New ─── */
+.whats-new-section {
+  padding: 5rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+.whats-new-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.15),
+    rgba(139, 92, 246, 0.15)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a78bfa;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+.whats-new-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.whats-new-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 14px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.whats-new-section.visible .whats-new-card {
+  opacity: 1;
+  transform: translateX(0);
+}
+.whats-new-card:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+  background: var(--vp-c-bg-mute);
+  transform: translateX(4px);
+}
+.whats-new-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.12),
+    rgba(99, 102, 241, 0.08)
+  );
+  border-radius: 10px;
+}
+.whats-new-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  margin: 0 0 0.35rem 0;
+}
+.whats-new-desc {
+  font-size: 0.9rem;
+  color: var(--muse-section-desc);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ─── Stats Strip ─── */
+.stats-strip-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--muse-stats-bg, rgba(15, 23, 42, 0.5)),
+    transparent
+  );
+}
+.stats-strip-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stats-strip-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.stat-number {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-3);
+  font-weight: 500;
 }
 
 /* ─── Demo ─── */
@@ -643,6 +915,44 @@ html.dark .demo-mock {
   }
 }
 
+/* ─── Tech Stack ─── */
+.tech-stack-section {
+  padding: 3rem 2rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+.tech-stack-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.tech-stack-label {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-3);
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.tech-stack-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.tech-stack-item {
+  padding: 0.4rem 1rem;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
 /* ─── CTA ─── */
 .cta-section {
   padding: 6rem 2rem;
@@ -792,6 +1102,23 @@ html.dark .demo-mock {
 
   .hero-title {
     font-size: 2.4rem;
+  }
+  .stats-strip-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .whats-new-card {
+    padding: 1.25rem;
+  }
+  .tech-stack-list {
+    gap: 0.4rem;
+  }
+  .tech-stack-item {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+  }
+  .hero-screenshot {
+    margin-top: 2rem;
   }
 }
 

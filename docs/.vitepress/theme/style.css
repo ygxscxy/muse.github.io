@@ -55,6 +55,8 @@
   --muse-btn-hover-bg: #f1f3f5;
   --muse-footer-border: #e9ecef;
   --muse-footer-text: #868e96;
+  --muse-stats-bg: rgba(248, 249, 250, 0.6);
+  --muse-hero-screenshot-shadow: rgba(0, 0, 0, 0.08);
 }
 
 /* ─── 深色模式 ─── */
@@ -108,6 +110,8 @@ html.dark {
   --muse-btn-hover-bg: #16161f;
   --muse-footer-border: #1e1e2e;
   --muse-footer-text: #5c5c72;
+  --muse-stats-bg: rgba(15, 23, 42, 0.6);
+  --muse-hero-screenshot-shadow: rgba(0, 0, 0, 0.4);
 }
 
 html {
@@ -232,4 +236,47 @@ button {
     rgba(10, 10, 15, 0.6) 100%
   );
   pointer-events: none;
+}
+
+/* ─── Counter Animation ─── */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Stagger Fade In ─── */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+/* ─── Glow Pulse ─── */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px rgba(139, 92, 246, 0.08);
+  }
+}
+
+/* Full-width sections inside VPDoc */
+.vp-doc .stats-strip-section {
+  max-width: 100%;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
 }

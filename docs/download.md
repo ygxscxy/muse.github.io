@@ -74,7 +74,7 @@ title: 下载 Muse
 
 选择你的操作系统，开始使用 Muse。
 
-<a class="download-card" href="https://github.com/ygxscxy/muse.github.io/releases/download/v1.0.0/Muse-Setup.exe" download>
+<a class="download-card" href="https://github.com/ygxscxy/muse.github.io/releases/download/v1.1.0/Muse-Setup.exe" download>
   <div class="download-card-icon">🪟</div>
   <div class="download-card-info">
     <p class="download-card-title">Windows</p>
@@ -102,8 +102,8 @@ title: 下载 Muse
 </a>
 
 <div class="version-info">
-  <p class="version-number">v1.0.0</p>
-  <p class="version-date">发布日期：2026 年 5 月</p>
+  <p class="version-number">v1.1.0</p>
+  <p class="version-date">发布日期：2026 年 6 月</p>
 </div>
 
 > 💡 提示：目前 Windows 版本可直接下载使用。macOS 与 Linux 版本正在准备中，敬请期待！
