@@ -114,6 +114,11 @@ export default defineConfig({
         text: "下载",
         link: "/download",
       },
+
+      {
+        text: "更新日志",
+        link: "/changelog/",
+      },
     ],
 
     sidebar: {
